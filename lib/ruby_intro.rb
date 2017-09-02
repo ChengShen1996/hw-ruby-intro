@@ -14,21 +14,29 @@ def max_2_sum arr
   # YOUR CODE HERE
   if arr.empty?
   	return 0;
+  end
   if arr.length==1
   	return arr[0]
+  end
   temp=arr.sort
   return temp[-1]+temp[-2]
 end
 
 def sum_to_n? arr, n
   # YOUR CODE HERE
+  if arr.length<2
+  	return false
+  end
   temp=[]
   count=0
-  for i in arr
-  	for j in arr
-  		temp[count]=i+j 
-  		count+=1 
-  	end
+  len_arr=arr.length
+  i=0
+  while i<(len_arr-1)
+  	for j in ((i+1)...len_arr)
+  		temp[count]=arr[i]+arr[j]
+  		count+=1
+   	end
+   	i+=1
   end
   temp.each{
   	|a| 
@@ -44,7 +52,7 @@ end
 
 def hello(name)
   # YOUR CODE HERE
-  return "Hello,"+name
+  return "Hello, "+name
 end
 
 def starts_with_consonant? s
@@ -58,10 +66,10 @@ end
 
 def binary_multiple_of_4? s
   # YOUR CODE HERE
-  if !/\A[01]+00\Z/.match(s)
-		return false
-	else
+  if /\A[01]+00\Z/.match(s) || /\A0\Z/.match(s)
 		return true
+	else
+		return false
 	end
 end
 
